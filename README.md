@@ -23,9 +23,9 @@ cargo build # To build the binary
 ```
 
 ## COMING UP⏭️
-- [] Basic TUI user interface
-- [] Held-Karp algorithm implementation
-- [] A branch and bound algorithm implementation
+- [ ] Basic TUI user interface
+- [ ] Held-Karp algorithm implementation
+- [ ] A branch and bound algorithm implementation
 
 ## ACKNOWLEDGEMENTS🙏
 - Thank you to bacinger for the json file provided at his [f1-circuits](https://github.com/bacinger/f1-circuits) repository, I use a modified version within this program!
