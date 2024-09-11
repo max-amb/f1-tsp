@@ -1,7 +1,7 @@
 use std::fs::File;
+use std::env::current_exe;
 use std::io::BufReader;
 use std::io::prelude::*;
-use std::path::Path;
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
@@ -15,11 +15,18 @@ pub struct Location {
 
 pub fn parse_json() -> Result<Vec<Location>> {
     let mut locations: Vec<Location> = Vec::new();
-    let path = Path::new("/home/max/Documents/code/f1-calendar/src/f1-locations.json");
+
+    // This is so awkward due to the exe being in a target directory far away from the json
+    let mut path_exe = current_exe().unwrap();
+    path_exe.pop();
+    path_exe.pop();
+    path_exe.pop();
+    path_exe.push("data/f1-locations.json");
+
     // Open the path in read-only mode, returns `io::Result<File>`
-    let file = match File::open(&path) {
+    let file = match File::open(path_exe.clone()) {
         // The `description` method of `io::Error` returns a string that describes the error
-        Err(_) => panic!("couldn't open file"),
+        Err(_) => panic!("couldn't open file: {:?}", path_exe.to_str()),
         Ok(file) => file,
     };
     let reader = BufReader::new(file);

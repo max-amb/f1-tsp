@@ -3,6 +3,7 @@ use crate::parse::Location;
 use std::collections::HashMap;
 use graphviz_rust::cmd::*;
 use graphviz_rust::exec_dot;
+
 pub fn generate_graph(dot_graph: String) {
     /*
     let g: Graph = parse(dot_graph.as_str()).unwrap();
@@ -14,7 +15,14 @@ pub fn generate_graph(dot_graph: String) {
             CommandArg::Output("/home/max/Pictures/graph.svg".to_string()),
         ],
     ); */
-    let _ = exec_dot(dot_graph, vec![CommandArg::Layout(Layout::Neato), CommandArg::Format(Format::Svg), CommandArg::Output("/tmp/graph.svg".to_string())]);
+    let _ = exec_dot(
+        dot_graph,
+        vec![
+            CommandArg::Layout(Layout::Neato),
+            CommandArg::Format(Format::Svg),
+            CommandArg::Output("/tmp/graph.svg".to_string())
+        ]
+    );
 }
 
 pub fn generate_dot(graph : HashMap<String, Vec<Edge>>, locations: Vec<Location>, path: Vec<String>) -> String {

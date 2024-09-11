@@ -1,5 +1,5 @@
 #![allow(unused_macros)]
-mod parse; mod distance; mod graphing; mod dotting; mod dijkstra; mod wfi; mod nearest_neighbour; mod aco;
+mod parse; mod distance; mod graphing; mod dotting; mod nearest_neighbour;
 use std::collections::HashMap;
 use parse::Location;
 

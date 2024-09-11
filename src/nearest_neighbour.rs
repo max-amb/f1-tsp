@@ -1,11 +1,10 @@
-// https://en.wikipedia.org/wiki/Nearest_neighbour_algorithm
 use std::collections::HashMap;
 use crate::{Edge, parse::Location};
 pub fn nn(graph: HashMap<String, Vec<Edge>>, locations: Vec<Location>, starting_location: String) -> Vec<String> {
-    let mut modgraph = graph.clone();
+    let modgraph = graph.clone();
     let mut path: Vec<String> = vec![starting_location.clone()];
     let mut current_location = starting_location;
-    for i in 0..locations.len()-1{
+    for _ in 0..locations.len()-1{
         let mut min_distance = f64::INFINITY;
         let mut next_location = String::new();
         let possible_directions = modgraph.get_key_value(current_location.as_str()).unwrap().1;
