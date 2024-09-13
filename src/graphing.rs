@@ -3,23 +3,26 @@ use crate::Location;
 use crate::distance::calculate;
 use std::collections::HashMap;
 
+/// This macro is used to add an edge to the graph
 macro_rules! add_edge{
     ($graph: expr, $from: expr, $to: expr, $weight: expr) => {
         $graph.entry($from).and_modify(|v| v.push(Edge { to: $to, weight: $weight } ))
     };
 }
 
-pub fn create_graph(locations: Vec<Location>) -> HashMap<String, Vec<Edge>>
-{
+/// This function creates the graph from a vector of locations (taken from the Json)
+/// Args:
+///     locations: Vec<Location> - the locations
+pub fn create_graph(locations: Vec<Location>) -> HashMap<String, Vec<Edge>> {
     let mut graph: HashMap<String, Vec<Edge>> = HashMap::new();
     for i in &locations {
         graph.insert(i.location.clone(), Vec::new());
     }
-    let new = add_edges(locations, graph.clone());
-    new
+    add_edges(locations, graph.clone())
 }
 
-// Loop through the locations and add to the graph 
+/// Given the locations and the graph, this function add's the edges, calculating their lengths
+/// It initially creates an edge between every node, with the weight as the distance
 fn add_edges(locations: Vec<Location>, graph: HashMap<String, Vec<Edge>>) -> HashMap<String, Vec<Edge>> {
     let mut new_graph = graph;
     for i in 0..locations.len() {
@@ -31,11 +34,11 @@ fn add_edges(locations: Vec<Location>, graph: HashMap<String, Vec<Edge>>) -> Has
                     already_in = true;
                 }
             }
-            if distance != 0.00009493529796600342 && distance != 0.0 && !already_in{
+            if distance != 0.0 && !already_in {
                 add_edge!(new_graph, locations[i].location.clone(), locations[j].location.clone(), distance);
             }
         }
     }
-    return new_graph;
+    new_graph
 }
 

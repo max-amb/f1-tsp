@@ -1,6 +1,6 @@
 [package]
-name = "f1-calendar"
-version = "0.1.0"
+name = "f1-tsp"
+version = "0.1.1"
 edition = "2021"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -10,3 +10,4 @@ graphviz-rust = "0.6.6"
 serde = { version = "1.0.188", features = ["derive"] }
 serde_json = "1.0"
 text_io = "0.1.12"
+rand = "0.8.5"

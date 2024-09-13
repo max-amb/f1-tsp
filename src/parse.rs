@@ -1,3 +1,4 @@
+/// This file does the parsing of the f1-locations.json
 use std::fs::File;
 use std::env::current_exe;
 use std::io::BufReader;
@@ -5,6 +6,7 @@ use std::io::prelude::*;
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
+/// The location struct which contains all of the information relavent for a location
 #[derive(Serialize, Deserialize,Clone)]
 pub struct Location {
     pub lon: f64,
@@ -13,6 +15,7 @@ pub struct Location {
     pub id: String,
 }
 
+/// This function opens the file, iterates through its lines and adds it to the locations json
 pub fn parse_json() -> Result<Vec<Location>> {
     let mut locations: Vec<Location> = Vec::new();
 
