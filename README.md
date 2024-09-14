@@ -11,7 +11,9 @@ git clone https://github.com/max-amb/f1-tsp.git && cd f1-tsp
 cargo run # To build and run 
 ```
 #### WITHOUT CARGO⛔🚚:
-- go to releases and download the latest binary
+- Go to releases and download the latest binary
+- In the same folder as the binary, make a folder named data and place the `f1-locations.json` inside it
+- Then make it executable and run it!
 ```bash
 chmod +x {YOUR BINARY}
 ./{YOUR BINARY}
@@ -22,10 +24,13 @@ git clone https://github.com/max-amb/f1-tsp.git && cd f1-tsp
 cargo build # To build the binary
 ```
 
-## COMING UP⏭️
-- [ ] Basic TUI user interface
-- [ ] Held-Karp algorithm implementation
-- [ ] A branch and bound algorithm implementation
+## Screenshots 📸
+* Just nearest neighbour:
+![nearest_neighbour](./screenshots/nearest_neighbour.svg)
+* Just simulated annealing:
+![simulated annealing](./screenshots/simulated_annealing.svg)
+* The comparison:
+![comparison](./screenshots/comparison.svg)
 
 ## ACKNOWLEDGEMENTS🙏
 - Thank you to bacinger for the json file provided at his [f1-circuits](https://github.com/bacinger/f1-circuits) repository, I use a modified version within this program!
