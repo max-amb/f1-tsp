@@ -27,7 +27,7 @@ cargo build # To build the binary
 ## Screenshots 📸
 * Just nearest neighbour (cost: 63476.25688357275km):
 ![nearest_neighbour](./screenshots/nearest_neighbour.svg)
-* Just simulated annealing (cost: 52140.55396293411):
+* Just simulated annealing (cost: 52140.55396293411km):
 ![simulated annealing](./screenshots/simulated_annealing.svg)
 * The comparison:
 ![comparison](./screenshots/comparison.svg)
