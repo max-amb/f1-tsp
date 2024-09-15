@@ -40,6 +40,7 @@ cargo build # To build the binary
 	* The slower the better (rooted in thermodynamics) - the technical definition of annealing
 * If you go greedily immediately towards the local minimum you are guaranteed to find a local minimum but not the global
 * Natures minimization algorithm follows:
+
 $$
 \begin{gather}
 	\text{The probability of a singular energy state is given by:} \\
