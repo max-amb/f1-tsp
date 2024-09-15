@@ -80,13 +80,13 @@ $$
 			* ABCDE -> ADEBC
 	* Next we need a way to calculate the cost of the configuration
 		* A common way is to simply calculate the total length of the path
-		* $E = L = \sum^{N-1}_{i=0} \sqrt{ (x_{i} - x_{i+1})^2 + (y_{i} - y_{i+1})^2}$
+		* $`E = L = \sum^{N-1}_{i=0} \sqrt{ (x_{i} - x_{i+1})^2 + (y_{i} - y_{i+1})^2}`$
 		* This cost function is quite nice because it allows for changes to requirements
 			* For example if you wanted to assign a heavy cost to crossing the river (Splitting the map into west and east)
 			* $\mu_{i} = 1 \iff \text{node i is on the west}$
 			* $\mu_{i} = -1 \iff \text{node i is on the east}$
 			* $\lambda = \text{ Cost of crossing}$ 
-			* $E = L = \sum^{N-1}_{i=0} \sqrt{ (x_{i} - x_{i+1})^2 + (y_{i} - y_{i+1})^2} + \lambda(\mu_{i} - \mu_{i+1})$
+			* $`E = L = \sum^{N-1}_{i=0} \sqrt{ (x_{i} - x_{i+1})^2 + (y_{i} - y_{i+1})^2} + \lambda(\mu_{i} - \mu_{i+1})`$
 			* So here if the next node was across the river an additional cost of $4\lambda$ would be associated with the traversal 
 	* Finally we need a good annealing schedule
 		* This is how quickly we lower the temperature - how quickly we descend on our local minimums (hoping they are global!!)
