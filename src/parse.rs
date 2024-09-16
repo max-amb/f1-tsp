@@ -21,9 +21,18 @@ pub fn parse_json() -> Result<Vec<Location>> {
 
     // This is so awkward due to the exe being in a target directory far away from the json
     let mut path_exe = current_exe().unwrap();
-    path_exe.pop();
-    path_exe.pop();
-    path_exe.pop();
+    'outer: loop {
+        path_exe.pop();
+        if path_exe.is_dir() {
+            for entry in path_exe.read_dir().expect("os listing failed") {
+                if let Ok(entry) = entry {
+                    if entry.path().ends_with("data") {
+                        break 'outer;
+                    }
+                }
+            }
+        };
+    };
     path_exe.push("data/f1-locations.json");
 
     // Open the path in read-only mode, returns `io::Result<File>`
