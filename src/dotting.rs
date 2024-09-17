@@ -9,13 +9,13 @@ use graphviz_rust::exec_dot;
 ///
 /// Args:
 ///     dot_graph: String - the dot graph as a string
-pub fn generate_graph(dot_graph: String) {
+pub fn generate_graph(dot_graph: String, file_path: String) {
     let _ = exec_dot(
         dot_graph,
         vec![
             CommandArg::Layout(Layout::Neato),
             CommandArg::Format(Format::Svg),
-            CommandArg::Output("/tmp/graph.svg".to_string())
+            CommandArg::Output(file_path)
         ]
     );
 }
