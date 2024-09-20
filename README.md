@@ -1,27 +1,45 @@
 # F1 TSP
-F1-tsp is a project to calculate the fastest distance around all of the f1 locations. ~~To do this it currently uses the nearest neighbor algorithm which is admitedly not very optimized, I am looking into implementing better algorithms.~~ There is now simulated annealing implemented as well which I believe has found the fastest way!
+F1-tsp is a project to calculate the fastest distance around all of the f1 locations. ~~To do this it currently uses the nearest neighbor algorithm which is admitedly not very optimized, I am looking into implementing better algorithms.~~. Currently the program runs a comparison between nearest neighbour and simulated annealing.
 
 ## WHY❓
-I did this to learn rust and graphviz along with a small bit of trigonometry (have a look at distance.rs). It serves no actual purpose due to the F1 calendar not being based on shortest distances between tracks but if the FIA want to use this optimized calendar, feel free!
+Recently I developed an interest in the travelling salesman problem and after a few attempts at brute forcing solutions I realised I needed to be a bit smarter. This, paired with F1 being an interesting sport, made me start on this project. Originally, I only implemented nearest neighbour but this obviously wasn't giving me the best paths. A while later my dad was using simulated annealing to solve suduko puzzles and he taught me how it worked. I found the origins in nature really interesting, and hence I implemented it here!
 
 ## RUN🏃
+#### With Nix (Recommended)
+* This is done utilising the flake.nix found in this repository
+###### Enabling flakes ❄️
+* To run this program you will need nix flakes enabled (or you can append the option for every command)
+* So to enable nix flakes for just your user add this to your home-manager configuration:
+```nix
+nix = {
+    package = pkgs.nix;
+    settings.experimental-features = [ "nix-command" "flakes" ];
+};
+```
+* Or to enable it system wide:
+```nix
+nix.settings.experimental-features = [ "nix-command" "flakes" ];
+```
+* Finally, if you just want to enable it on a command-by-command basis append `--experimental-features 'nix-command flakes'` to every command
+
+###### Building and running the program 👷
+* The program is wrapped in a flake, so it can be run with:
+```nix
+nix run 'github:max-amb/f1-tsp' <export path for graph>
+```
+
 #### WITH CARGO🚚:
 ```bash
 git clone https://github.com/max-amb/f1-tsp.git && cd f1-tsp
-cargo run # To build and run 
+cargo run -- <export path for graph> # To build and run 
 ```
-#### WITHOUT CARGO⛔🚚:
+#### WITHOUT CARGO(NOT RECOMMENDED)⛔🚚:
 - Go to releases and download the latest binary
 - In the same folder as the binary, make a folder named data and place the `f1-locations.json` inside it
 - Then make it executable and run it!
 ```bash
 chmod +x {YOUR BINARY}
-./{YOUR BINARY}
-```
-## BUILD👷:
-```bash
-git clone https://github.com/max-amb/f1-tsp.git && cd f1-tsp
-cargo build # To build the binary
+./{YOUR BINARY} <export path for graph>
 ```
 
 ## Screenshots 📸
