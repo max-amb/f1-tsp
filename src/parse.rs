@@ -3,6 +3,7 @@ use std::fs::File;
 use std::env::current_exe;
 use std::io::BufReader;
 use std::io::prelude::*;
+use std::path::PathBuf;
 use serde::{Deserialize, Serialize};
 use serde_json::Result;
 
@@ -22,7 +23,6 @@ pub fn parse_json() -> Result<Vec<Location>> {
     // This is so awkward due to the exe being in a target directory far away from the json
     let mut path_exe = current_exe().unwrap();
     'outer: loop {
-        path_exe.pop();
         if path_exe.is_dir() {
             for entry in path_exe.read_dir().expect("os listing failed") {
                 if let Ok(entry) = entry {
@@ -32,6 +32,10 @@ pub fn parse_json() -> Result<Vec<Location>> {
                 }
             }
         };
+        path_exe.pop();
+        if path_exe.as_os_str().is_empty() || path_exe == PathBuf::from("/") {
+            panic!("Did not find f1-locations.json");
+        }
     };
     path_exe.push("data/f1-locations.json");
 
